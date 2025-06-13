@@ -15,17 +15,8 @@ from tkinter import filedialog
 from threading import Thread
 from win11toast import toast
 from screeninfo import get_monitors
-from ctypes import wintypes, windll
 
-def get_documents_folder():
-    CSIDL_PERSONAL = 5
-    SHGFP_TYPE_CURRENT = 0
-    buf = ctypes.create_unicode_buffer(wintypes.MAX_PATH)
-    windll.shell32.SHGetFolderPathW(None, CSIDL_PERSONAL, None, SHGFP_TYPE_CURRENT, buf)
-    return buf.value
-
-DOCUMENTS_FOLDER = os.path.join(get_documents_folder(), "NoMoreBorder")
-SETTINGS_FILE_PATH = os.path.join(DOCUMENTS_FOLDER, "settings.json")
+SETTINGS_FILE_PATH = os.path.join(os.path.dirname(sys.executable), "settings.json")
 
 user32 = ctypes.windll.user32
 screen_width = user32.GetSystemMetrics(0)
@@ -143,9 +134,6 @@ def refresh_window_list():
     window_list_dropdown.configure(values=display_priority_strings+display_strings)
 
 def load_settings():
-    if not os.path.exists(DOCUMENTS_FOLDER):
-        os.makedirs(DOCUMENTS_FOLDER)
-
     try:
         with open(SETTINGS_FILE_PATH, "r") as f:
             settings = json.load(f)
