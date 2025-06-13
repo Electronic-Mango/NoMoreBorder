@@ -86,7 +86,7 @@ We appreciate your patience and understanding. False positives are unfortunately
 
 ## Configuration
 
-NoMoreBorder automatically saves your settings to a `settings.json` file located in the `Documents/NoMoreBorder` directory. This file includes the list of applications set to borderless mode and the selected theme, ensuring your preferences are maintained across sessions.
+NoMoreBorder automatically saves your settings to a `settings.json` file located in the same directory as executable. This file includes the list of applications set to borderless mode and the selected theme, ensuring your preferences are maintained across sessions.
 
 ## Contributions
 
